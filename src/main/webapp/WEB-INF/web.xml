@@ -23,14 +23,10 @@
     "midnight", "mint-choc", "overcast", "pepper-grinder", "redmond", "rocket", "sam",
     "smoothness", "south-street", "start", "sunny", "swanky-purse", "trontastic", 
     "twitter bootstrap", "ui-darkness", "ui-lightness", "vader" -->
-	<!-- 
 	<context-param>
 			<param-name>primefaces.THEME</param-name>
 			<param-value>adamantium</param-value>
 	</context-param>
-	 -->
-	
-	
 	
 	
 	 <!-- Configuração do JSF -->
@@ -47,8 +43,11 @@
     <servlet-mapping>
 	        <servlet-name>Faces Servlet</servlet-name>
 	        <url-pattern>*.xhtml</url-pattern>
-</servlet-mapping>
+	</servlet-mapping>
 	
-	
+	<mime-mapping>
+	        <extension>woff2</extension>
+	        <mime-type>application/font-woff2</mime-type>
+    </mime-mapping>
 	
 	</web-app>
