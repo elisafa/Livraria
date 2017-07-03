@@ -1,4 +1,4 @@
-package com.ibcj.interfaces;
+package com.ibcj.repository;
 
 import java.util.List;
 

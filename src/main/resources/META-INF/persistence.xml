@@ -8,6 +8,8 @@
 		
 		<class>com.ibcj.model.Grupo</class>
 		<class>com.ibcj.model.Usuario</class>
+		<class>com.ibcj.model.TipoObjeto</class>
+		<class>com.ibcj.model.Livro</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/livraria"/>

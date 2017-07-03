@@ -1,42 +1,75 @@
 package com.ibcj.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Table
 @Entity
-public class Livro {
+public class Livro implements Serializable{
 
-	@
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
+	private TipoObjeto tipoObjeto;
 	private String nome;
 	private String autor;
 	private Integer quantidade;
 	private Double valor;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="id_tipo_objeto", referencedColumnName="id")
+	public TipoObjeto getTipoObjeto() {
+		return tipoObjeto;
+	}
+	public void setTipoObjeto(TipoObjeto tipoObjeto) {
+		this.tipoObjeto = tipoObjeto;
+	}
+	
+	@Column
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@Column
 	public String getAutor() {
 		return autor;
 	}
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+	
+	@Column
 	public Integer getQuantidade() {
 		return quantidade;
 	}
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	@Column
 	public Double getValor() {
 		return valor;
 	}
@@ -52,6 +85,7 @@ public class Livro {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
+		result = prime * result + ((tipoObjeto == null) ? 0 : tipoObjeto.hashCode());
 		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
 	}
@@ -84,6 +118,11 @@ public class Livro {
 				return false;
 		} else if (!quantidade.equals(other.quantidade))
 			return false;
+		if (tipoObjeto == null) {
+			if (other.tipoObjeto != null)
+				return false;
+		} else if (!tipoObjeto.equals(other.tipoObjeto))
+			return false;
 		if (valor == null) {
 			if (other.valor != null)
 				return false;
@@ -91,6 +130,4 @@ public class Livro {
 			return false;
 		return true;
 	}
-	
-	
 }
