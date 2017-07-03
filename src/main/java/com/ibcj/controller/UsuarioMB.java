@@ -11,6 +11,7 @@ import com.ibcj.model.Usuario;
 import com.ibcj.repository.IUsuario;
 import com.ibcj.repository.impl.UsuarioImpl;
 import com.ibcj.util.JpaUtil;
+import com.ibcj.util.Utilitaria;
 
 @ManagedBean
 @ViewScoped
@@ -26,9 +27,10 @@ public class UsuarioMB implements Serializable{
 	
 	public String cadastrar(){
 		
+		String senha = this.usuario.getSenha();
+		this.usuario.setSenha(Utilitaria.md5(senha));
 		IUsuario usuarioModelo = new UsuarioImpl();
 		usuarioModelo.salvar(usuario);
-		JpaUtil.close();
 		
 		return "index.xhtml?faces-redirect=true";
 		
@@ -38,7 +40,6 @@ public class UsuarioMB implements Serializable{
 		
 		IUsuario usuarioModelo = new UsuarioImpl();
 		listaUsuarios = usuarioModelo.listar();
-		JpaUtil.close();
 		
 		return listaUsuarios;
 		
