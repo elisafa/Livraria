@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+	<f:metadata>
+		<f:viewParam name="id" value="#{usuarioMB.usuario}" />
+	</f:metadata>
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Editar Usuario</title>  
+      <h:form>
+
+<h2>Usuario</h2>
+     <p:tabView>
+        <p:tab title="Editar Usuario">
+        <p:separator/>
+             <h:panelGrid columns="4" cellpadding="10">
+	                <p:outputLabel value="Login:"/>
+	                <p:inputText value="#{usuarioMB.usuario.login}" size="50" placeholder="Ex: Steve Jobs" />
+	                <p:outputLabel value="Grupos"/>
+	                	<p:selectManyCheckbox filter="true" value="#{usuarioMB.usuario.grupos}" converter="grupoConversor" layout="pageDirection">
+	                		<f:attribute name="collectionType" value="java.util.ArrayList"/>
+	                		<f:selectItems value="#{grupoMB.listar()}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.nome}"/>
+	                	</p:selectManyCheckbox>
+	                	        
+	            </h:panelGrid>   
+	      
+        </p:tab>
+    </p:tabView>
+       <p:panelGrid  style="border:0px">
+         <p:commandButton value="Editar" action="#{usuarioMB.editar()}"/>
+       </p:panelGrid>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Listar Usuarios</title>  
+      <h:form id="frm">
+
+<h2>Usuarios</h2>
+     <p:tabView id="tabView">
+        <p:tab title="Listar Usuarios">
+        <p:separator/>
+             
+             <p:toolbar id="toolbar">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" icon="ui-icon-plus"
+						action="#{usuarioMB.novo()}" process="@this" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Editar" icon="ui-icon-pencil"
+						title="Editar" process="@this" action="#{usuarioMB.edicao()}"
+						disabled="#{usuarioMB.usuarioSelecionado == null}" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						title="Excluir" process="@this" update="tabela_usuarios toolbar"
+						action="#{usuarioMB.excluir}"
+						disabled="#{usuarioMB.usuarioSelecionado == null}"
+						onclick="if (!confirm('Deseja deletar o Usuario  #{usuarioMB.usuarioSelecionado.login} ? ')) return false" />
+
+				</p:toolbarGroup>
+			</p:toolbar>
+             
+             <p:dataTable id="tabela_usuarios" var="usuario"
+				value="#{usuarioMB.listar()}" frame="box" rules="all"
+				cellpadding="3" width="100%" headerClass="cabecalho"
+				rowClasses="cor-sim, cor-nao" columnClasses="nome"
+				emptyMessage="Nenhum usuario Cadastrado"
+				selection="#{usuarioMB.usuarioSelecionado}"
+				selectionMode="single" rowKey="#{usuario.id}">
+
+				<p:ajax event="rowSelect" update=":frm:tabView:toolbar" />
+				<p:ajax event="rowUnselect" update=":frm:tabView:toolbar" />
+
+				<p:column filterBy="#{usuario.login}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Login" />
+					</f:facet>
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
+
+				<p:column filterBy="#{usuario.login}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Grupos" />
+					</f:facet>
+					<ui:repeat var="grupo" value="#{usuario.grupos}">
+						<h:outputText value="#{grupo.nome}" />
+						<br></br>
+					</ui:repeat>
+				</p:column>
+
+			</p:dataTable>
+                
+	      
+        </p:tab>
+    </p:tabView>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

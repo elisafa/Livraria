@@ -4,47 +4,63 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.persistence.EntityManager;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.ibcj.model.Grupo;
-import com.ibcj.repository.IGrupo;
-import com.ibcj.repository.impl.GrupoImpl;
-import com.ibcj.util.JpaUtil;
+import com.ibcj.service.GrupoService;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class GrupoMB implements Serializable{
-
+	
+	
+	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private GrupoService grupoService;
 	private Grupo grupo = new Grupo();
 	private Grupo grupoSelecionado;
 	private List<Grupo> listaGrupos = new ArrayList<Grupo>();
 	
+	
+	
 	public String cadastrar(){
-		
-		System.out.println("Nome do Grupo: " + grupo.getNome());
-		IGrupo grupoModelo = new GrupoImpl();
-		grupoModelo.salvar(grupo);
-		
-		return "index.xhtml?faces-redirect=true";
-		
+		grupoService.salvar(grupo);
+		return "/index.xhtml?faces-redirect=true";	
+	}
+	
+	public String editar(){
+		grupoService.editar(grupo);
+		return "/index.xhtml?faces-redirect=true";	
 	}
 	
 	public List<Grupo> listar(){
-		
-		IGrupo grupoModelo = new GrupoImpl();
-		listaGrupos = grupoModelo.listar();
-		
-		return listaGrupos;
-		
+		listaGrupos = grupoService.listar();
+		return listaGrupos;	
 	}
 	
+	public String novo(){
+		String pagina = "/site/Grupo/Cadastro/Grupo.xhtml?faces-redirect=true";
+		return pagina;
+	}
 	
+	public String edicao(){	
+		String pagina = "/site/Grupo/Edicao/Grupo.xhtml?id="+grupoSelecionado.getId()+"faces-redirect=true";
+		return pagina;
+	}
+	
+	public void excluir(){
+		grupoService.remover(grupoSelecionado.getId());
+		grupoSelecionado = null;
+		listar();
+	}
 	
 	
 	public Grupo getGrupo() {

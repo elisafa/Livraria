@@ -5,37 +5,37 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.ibcj.model.Grupo;
-import com.ibcj.repository.impl.GrupoImpl;
+import com.ibcj.model.Usuario;
+import com.ibcj.repository.impl.UsuarioImpl;
 import com.ibcj.util.cdi.CDIServiceLocator;
 
-@FacesConverter(value="grupoConversor", forClass=Grupo.class)
-public class GrupoConversor implements Converter{
+@FacesConverter(forClass=Usuario.class)
+public class UsuarioConversor implements Converter{
 
-	private GrupoImpl grupoImpl;
+	private UsuarioImpl usuarioImpl;
 	
-	public GrupoConversor() {
-		grupoImpl = CDIServiceLocator.getBean(GrupoImpl.class);
+	public UsuarioConversor() {
+		usuarioImpl = CDIServiceLocator.getBean(UsuarioImpl.class);
 	}
 	
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String valor) {
-		Grupo grupo = null;			
+		Usuario usuario = null;			
 
 		if (valor != null) {
-			grupo = grupoImpl.buscarPorId(new Long(valor));
+			usuario = usuarioImpl.buscarPorId(new Long(valor));
 		}
 
-		return grupo;
+		return usuario;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object valor) {
 		
 		if (valor != null) {
-			Grupo grupo = (Grupo) valor;
-			return grupo.getId() == null ? null : grupo.getId().toString();
+			Usuario usuario = (Usuario) valor;
+			return usuario.getId() == null ? null : usuario.getId().toString();
 
 		}
 		

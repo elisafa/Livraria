@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Cadastrar Grupo</title>  
+      <h:form id="frm">
+
+<h2>Grupo</h2>
+     <p:tabView id="tabView">
+        <p:tab title="Listar Grupos">
+        <p:separator/>
+             
+             <p:toolbar id="toolbar">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" icon="ui-icon-plus"
+						action="#{grupoMB.novo()}" process="@this" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Editar" icon="ui-icon-pencil"
+						title="Editar" process="@this" action="#{grupoMB.edicao()}"
+						disabled="#{grupoMB.grupoSelecionado == null}" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						title="Excluir" process="@this" update="tabela_grupos toolbar"
+						action="#{grupoMB.excluir}"
+						disabled="#{grupoMB.grupoSelecionado == null}"
+						onclick="if (!confirm('Deseja deletar o Grupo  #{grupoMB.grupoSelecionado.nome} ? ')) return false" />
+
+				</p:toolbarGroup>
+			</p:toolbar>
+             
+             <p:dataTable id="tabela_grupos" var="grupo"
+				value="#{grupoMB.listar()}" frame="box" rules="all"
+				cellpadding="3" width="100%" headerClass="cabecalho"
+				rowClasses="cor-sim, cor-nao" columnClasses="nome"
+				emptyMessage="Nenhum grupo Cadastrado"
+				selection="#{grupoMB.grupoSelecionado}"
+				selectionMode="single" rowKey="#{grupo.id}">
+
+				<p:ajax event="rowSelect" update=":frm:tabView:toolbar" />
+				<p:ajax event="rowUnselect" update=":frm:tabView:toolbar" />
+
+				<p:column filterBy="#{grupo.nome}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Grupo" />
+					</f:facet>
+					<h:outputText value="#{grupo.nome}" />
+				</p:column>
+
+			</p:dataTable>
+                
+	      
+        </p:tab>
+    </p:tabView>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+
