@@ -9,57 +9,57 @@
     <ui:define name="corpo"> 
 		
 	           
-    <title>Listar Tipos de Objetos</title>  
+    <title>Listar Tipos de Produtos</title>  
       <h:form id="frm">
 
-<h2>Tipos de Objetos</h2>
+<h2>Tipos de Produtos</h2>
      <p:tabView id="tabView">
-        <p:tab title="Listar Tipos de Objetos">
+        <p:tab title="Listar Tipos de Produtos">
         <p:separator/>
              
              <p:toolbar id="toolbar">
 				<p:toolbarGroup>
 					<p:commandButton value="Novo" icon="ui-icon-plus"
-						action="#{tipoObjetoMB.novo()}" process="@this" />
+						action="#{tipoProdutoMB.novo()}" process="@this" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
-						title="Editar" process="@this" action="#{tipoObjetoMB.edicao()}"
-						disabled="#{tipoObjetoMB.tipoObjetoSelecionado == null}" />
+						title="Editar" process="@this" action="#{tipoProdutoMB.edicao()}"
+						disabled="#{tipoProdutoMB.tipoProdutoSelecionado == null}" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
 					<p:commandButton value="Excluir" icon="ui-icon-trash"
-						title="Excluir" process="@this" update="tabela_tipoObjetos toolbar"
-						action="#{tipoObjetoMB.excluir}"
-						disabled="#{tipoObjetoMB.tipoObjetoSelecionado == null}"
-						onclick="if (!confirm('Deseja deletar o Tipo de Objeto  #{tipoObjetoMB.tipoObjetoSelecionado.nome} ? ')) return false" />
+						title="Excluir" process="@this" update="tabela_tipoProdutos toolbar"
+						action="#{tipoProdutoMB.excluir}"
+						disabled="#{tipoProdutoMB.tipoProdutoSelecionado == null}"
+						onclick="if (!confirm('Deseja deletar o Tipo de Produto  #{tipoProdutoMB.tipoProdutoSelecionado.nome} ? ')) return false" />
 
 				</p:toolbarGroup>
 			</p:toolbar>
              
-             <p:dataTable id="tabela_tipoObjetos" var="tipoObjeto"
-				value="#{tipoObjetoMB.listar()}" frame="box" rules="all"
+             <p:dataTable id="tabela_tipoProdutos" var="tipoProduto"
+				value="#{tipoProdutoMB.listar()}" frame="box" rules="all"
 				cellpadding="3" width="100%" headerClass="cabecalho"
 				rowClasses="cor-sim, cor-nao" columnClasses="nome"
-				emptyMessage="Nenhum tipoObjeto Cadastrado"
-				selection="#{tipoObjetoMB.tipoObjetoSelecionado}"
-				selectionMode="single" rowKey="#{tipoObjeto.id}">
+				emptyMessage="Nenhum tipo de produto cadastrado"
+				selection="#{tipoProdutoMB.tipoProdutoSelecionado}"
+				selectionMode="single" rowKey="#{tipoProduto.id}">
 
 				<p:ajax event="rowSelect" update=":frm:tabView:toolbar" />
 				<p:ajax event="rowUnselect" update=":frm:tabView:toolbar" />
 
-				<p:column filterBy="#{tipoObjeto.nome}"
+				<p:column filterBy="#{tipoProduto.nome}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">
 					<f:facet name="header">
-						<h:outputText value="Tipo de Objeto" />
+						<h:outputText value="Tipo de Produto" />
 					</f:facet>
-					<h:outputText value="#{tipoObjeto.nome}" />
+					<h:outputText value="#{tipoProduto.nome}" />
 				</p:column>
 
 			</p:dataTable>

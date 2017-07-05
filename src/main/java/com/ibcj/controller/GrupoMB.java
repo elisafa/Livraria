@@ -28,12 +28,12 @@ public class GrupoMB implements Serializable{
 	
 	public String cadastrar(){
 		grupoService.salvar(grupo);
-		return "/index.xhtml?faces-redirect=true";	
+		return "/site/Grupo/Consulta/Grupo.xhtml?faces-redirect=true";	
 	}
 	
 	public String editar(){
 		grupoService.editar(grupo);
-		return "/index.xhtml?faces-redirect=true";	
+		return "/site/Grupo/Consulta/Grupo.xhtml?faces-redirect=true";	
 	}
 	
 	public List<Grupo> listar(){

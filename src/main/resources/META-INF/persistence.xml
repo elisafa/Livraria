@@ -10,7 +10,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		
 		<class>com.ibcj.model.Grupo</class>
 		<class>com.ibcj.model.Usuario</class>
-		<class>com.ibcj.model.TipoObjeto</class>
+		<class>com.ibcj.model.TipoProduto</class>
 		<class>com.ibcj.model.Livro</class>
 		
 		<properties>

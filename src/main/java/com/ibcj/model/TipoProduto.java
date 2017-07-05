@@ -9,9 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
+@Table(name="Tipo_Produto")
 @Entity
-public class TipoObjeto implements Serializable{
+public class TipoProduto implements Serializable{
 
 	/**
 	 * 
@@ -52,7 +52,7 @@ public class TipoObjeto implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoObjeto other = (TipoObjeto) obj;
+		TipoProduto other = (TipoProduto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

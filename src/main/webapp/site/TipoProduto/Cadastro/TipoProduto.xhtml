@@ -9,23 +9,23 @@
     <ui:define name="corpo"> 
 		
 	           
-    <title>Cadastrar Tipo de Objeto</title>  
+    <title>Cadastrar Tipo de Produto</title>  
       <h:form>
 
-<h2>Tipo de Objeto</h2>
+<h2>Tipo de Produto</h2>
      <p:tabView>
-        <p:tab title="Cadastrar Tipo de Objeto">
+        <p:tab title="Cadastrar Tipo de Produto">
         <p:separator/>
              <h:panelGrid columns="4" cellpadding="10">
 	                <p:outputLabel value="Nome:"/>
-	                <p:inputText value="#{tipoObjetoMB.tipoObjeto.nome}" size="50" placeholder="Ex: Livro, Chaveiro etc ..." />	        
+	                <p:inputText value="#{tipoProdutoMB.tipoProduto.nome}" size="50" placeholder="Ex: Livro, Chaveiro etc ..." />	        
 	            </h:panelGrid>   
 	      
         </p:tab>
     </p:tabView>
      
        <p:panelGrid  style="border:0px">
-         <p:commandButton value="Salvar" action="#{tipoObjetoMB.cadastrar()}"/>
+         <p:commandButton value="Salvar" action="#{tipoProdutoMB.cadastrar()}"/>
        </p:panelGrid>	
     </h:form>
     </ui:define>

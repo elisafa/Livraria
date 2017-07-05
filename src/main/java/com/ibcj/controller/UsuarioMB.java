@@ -32,13 +32,13 @@ public class UsuarioMB implements Serializable{
 		String senha = this.usuario.getSenha();
 		this.usuario.setSenha(Utilitaria.md5(senha));
 		usuarioService.salvar(usuario);
-		return "/index.xhtml?faces-redirect=true";
+		return "/site/Usuario/Consulta/Usuario.xhtml?faces-redirect=true";
 		
 	}
 	
 	public String editar(){
 		usuarioService.editar(usuario);
-		return "/index.xhtml?faces-redirect=true";
+		return "/site/Usuario/Consulta/Usuario.xhtml?faces-redirect=true";
 	}
 	
 	public List<Usuario> listar(){
@@ -62,7 +62,6 @@ public class UsuarioMB implements Serializable{
 		String pagina = "/site/Usuario/Edicao/Usuario.xhtml?id="+usuarioSelecionado.getId()+"faces-redirect=true";
 		return pagina;
 	}
-	
 	
 
 	public Usuario getUsuario() {

@@ -21,7 +21,7 @@ public class Livro implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private TipoObjeto tipoObjeto;
+	private TipoProduto tipoObjeto;
 	private String nome;
 	private String autor;
 	private Integer quantidade;
@@ -38,10 +38,10 @@ public class Livro implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="id_tipo_objeto", referencedColumnName="id")
-	public TipoObjeto getTipoObjeto() {
+	public TipoProduto getTipoObjeto() {
 		return tipoObjeto;
 	}
-	public void setTipoObjeto(TipoObjeto tipoObjeto) {
+	public void setTipoObjeto(TipoProduto tipoObjeto) {
 		this.tipoObjeto = tipoObjeto;
 	}
 	
