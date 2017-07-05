@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+	<f:metadata>
+		<f:viewParam name="id" converter="tipoObjetoConversor" value="#{tipoObjetoMB.tipoObjeto}" />
+	</f:metadata>
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Editar Tipo de Objeto</title>  
+      <h:form>
+
+<h2>Tipo de Objeto</h2>
+     <p:tabView>
+        <p:tab title="CadastrarEditar Tipo de Objeto">
+        <p:separator/>
+             <h:panelGrid columns="4" cellpadding="10">
+	                <p:outputLabel value="Nome:"/>
+	                <p:inputText value="#{tipoObjetoMB.tipoObjeto.nome}" size="50" placeholder="Ex: Livro, Chaveiro etc ..." />	        
+	            </h:panelGrid>   
+	      
+        </p:tab>
+    </p:tabView>
+     
+       <p:panelGrid  style="border:0px">
+         <p:commandButton value="Editar" action="#{tipoObjetoMB.editar()}"/>
+       </p:panelGrid>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

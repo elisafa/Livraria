@@ -15,9 +15,6 @@ import com.ibcj.service.GrupoService;
 @ViewScoped
 public class GrupoMB implements Serializable{
 	
-	
-	
-	
 	/**
 	 * 
 	 */
@@ -27,9 +24,7 @@ public class GrupoMB implements Serializable{
 	private GrupoService grupoService;
 	private Grupo grupo = new Grupo();
 	private Grupo grupoSelecionado;
-	private List<Grupo> listaGrupos = new ArrayList<Grupo>();
-	
-	
+	private List<Grupo> listaGrupos = new ArrayList<Grupo>();	
 	
 	public String cadastrar(){
 		grupoService.salvar(grupo);
@@ -60,8 +55,7 @@ public class GrupoMB implements Serializable{
 		grupoService.remover(grupoSelecionado.getId());
 		grupoSelecionado = null;
 		listar();
-	}
-	
+	}	
 	
 	public Grupo getGrupo() {
 		return grupo;

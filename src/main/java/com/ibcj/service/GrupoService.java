@@ -21,18 +21,18 @@ public class GrupoService implements Serializable{
 	private GrupoImpl grupoImpl;
 	
 	@Transactional
-	public void salvar(Grupo grupo){
-		grupoImpl.salvar(grupo);
+	public Grupo buscarPorId(Long id) {
+		return grupoImpl.buscarPorId(id);
 	}
 	
 	@Transactional
 	public void editar(Grupo grupo){
 		grupoImpl.editar(grupo);
 	}
-
+	
 	@Transactional
-	public Grupo porCodigo(Long id) {
-		return grupoImpl.buscarPorId(id);
+	public List<Grupo> listar() {
+		return grupoImpl.listar();
 	}
 	
 	@Transactional
@@ -41,7 +41,7 @@ public class GrupoService implements Serializable{
 	}
 	
 	@Transactional
-	public List<Grupo> listar() {
-		return grupoImpl.listar();
+	public void salvar(Grupo grupo){
+		grupoImpl.salvar(grupo);
 	}
 }

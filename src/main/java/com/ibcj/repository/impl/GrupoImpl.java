@@ -19,13 +19,6 @@ public class GrupoImpl implements Serializable, IGrupo{
 
 	@Inject
 	private EntityManager em;
-	
-	@Override
-	public List<Grupo> listar() {
-		Query query = em.createQuery("from Grupo");
-		List<Grupo> listaGrupos = query.getResultList();
-		return listaGrupos;
-	}
 
 	@Override
 	public Grupo buscarPorId(Long id) {
@@ -34,20 +27,25 @@ public class GrupoImpl implements Serializable, IGrupo{
 	}
 
 	@Override
-	public void salvar(Grupo grupo) {
-		em.persist(grupo);
-	}
-
-	@Override
 	public void editar(Grupo grupo) {
 		em.merge(grupo);
 	}
 
 	@Override
+	public List<Grupo> listar() {
+		Query query = em.createQuery("from Grupo");
+		List<Grupo> listaGrupos = query.getResultList();
+		return listaGrupos;
+	}
+	
+	@Override
 	public void remover(Long id) {
-		
 		Grupo grupo = em.find(Grupo.class, id);
 		em.remove(grupo);
 	}
-
+	
+	@Override
+	public void salvar(Grupo grupo) {
+		em.persist(grupo);
+	}
 }
