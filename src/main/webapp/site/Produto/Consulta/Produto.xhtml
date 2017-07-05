@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Listar Produtos</title>  
+      <h:form id="frm">
+
+<h2>Produtos</h2>
+     <p:tabView id="tabView">
+        <p:tab title="Listar Produtos">
+        <p:separator/>
+             
+             <p:toolbar id="toolbar">
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" icon="ui-icon-plus"
+						action="#{produtoMB.novo()}" process="@this" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Editar" icon="ui-icon-pencil"
+						title="Editar" process="@this" action="#{produtoMB.edicao()}"
+						disabled="#{produtoMB.produtoSelecionado == null}" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Excluir" icon="ui-icon-trash"
+						title="Excluir" process="@this" update="tabela_produtos toolbar"
+						action="#{produtoMB.excluir}"
+						disabled="#{produtoMB.produtoSelecionado == null}"
+						onclick="if (!confirm('Deseja deletar o Produto  #{produtoMB.produtoSelecionado.nome} ? ')) return false" />
+
+				</p:toolbarGroup>
+			</p:toolbar>
+             
+             <p:dataTable id="tabela_produtos" var="produto"
+				value="#{produtoMB.listar()}" frame="box" rules="all"
+				cellpadding="3" width="100%" headerClass="cabecalho"
+				rowClasses="cor-sim, cor-nao" columnClasses="nome"
+				emptyMessage="Nenhum produto cadastrado"
+				selection="#{produtoMB.produtoSelecionado}"
+				selectionMode="single" rowKey="#{produto.id}">
+
+				<p:ajax event="rowSelect" update=":frm:tabView:toolbar" />
+				<p:ajax event="rowUnselect" update=":frm:tabView:toolbar" />
+
+				<p:column filterBy="#{produto.tipoProduto.nome}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Tipo do Produto" />
+					</f:facet>
+					<h:outputText value="#{produto.tipoProduto.nome}" />
+				</p:column>
+
+				<p:column filterBy="#{produto.nome}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+				
+				<p:column filterBy="#{produto.autor}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Autor" />
+					</f:facet>
+					<h:outputText value="#{produto.autor}" />
+				</p:column>
+				
+				<p:column filterBy="#{produto.quantidade}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Quantidade" />
+					</f:facet>
+					<h:outputText value="#{produto.quantidade}" />
+				</p:column>
+					
+				<p:column filterBy="#{produto.valor}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Valor" />
+					</f:facet>
+					<h:outputText value="#{produto.valor}" />
+				</p:column>
+
+			</p:dataTable>
+                
+	      
+        </p:tab>
+    </p:tabView>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

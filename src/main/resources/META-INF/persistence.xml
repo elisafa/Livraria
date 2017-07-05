@@ -11,7 +11,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		<class>com.ibcj.model.Grupo</class>
 		<class>com.ibcj.model.Usuario</class>
 		<class>com.ibcj.model.TipoProduto</class>
-		<class>com.ibcj.model.Livro</class>
+		<class>com.ibcj.model.Produto</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/livraria?serverTimezone=UTC"/>

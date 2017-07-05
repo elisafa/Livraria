@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Table
 @Entity
-public class Livro implements Serializable{
+public class Produto implements Serializable{
 
 	
 	/**
@@ -21,7 +21,7 @@ public class Livro implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private TipoProduto tipoObjeto;
+	private TipoProduto tipoProduto;
 	private String nome;
 	private String autor;
 	private Integer quantidade;
@@ -37,12 +37,12 @@ public class Livro implements Serializable{
 	}
 	
 	@ManyToOne
-	@JoinColumn(name="id_tipo_objeto", referencedColumnName="id")
-	public TipoProduto getTipoObjeto() {
-		return tipoObjeto;
+	@JoinColumn(name="id_tipo_produto", referencedColumnName="id")
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
 	}
-	public void setTipoObjeto(TipoProduto tipoObjeto) {
-		this.tipoObjeto = tipoObjeto;
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 	
 	@Column
@@ -85,10 +85,11 @@ public class Livro implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
-		result = prime * result + ((tipoObjeto == null) ? 0 : tipoObjeto.hashCode());
+		result = prime * result + ((tipoProduto == null) ? 0 : tipoProduto.hashCode());
 		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,7 +98,7 @@ public class Livro implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Livro other = (Livro) obj;
+		Produto other = (Produto) obj;
 		if (autor == null) {
 			if (other.autor != null)
 				return false;
@@ -118,10 +119,10 @@ public class Livro implements Serializable{
 				return false;
 		} else if (!quantidade.equals(other.quantidade))
 			return false;
-		if (tipoObjeto == null) {
-			if (other.tipoObjeto != null)
+		if (tipoProduto == null) {
+			if (other.tipoProduto != null)
 				return false;
-		} else if (!tipoObjeto.equals(other.tipoObjeto))
+		} else if (!tipoProduto.equals(other.tipoProduto))
 			return false;
 		if (valor == null) {
 			if (other.valor != null)

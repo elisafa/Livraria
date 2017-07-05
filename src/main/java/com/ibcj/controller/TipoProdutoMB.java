@@ -24,7 +24,7 @@ public class TipoProdutoMB implements Serializable{
 	private TipoProdutoService tipoProdutoService;
 	private TipoProduto tipoProduto = new TipoProduto();
 	private TipoProduto tipoProdutoSelecionado;
-	private List<TipoProduto> listatipoProdutos = new ArrayList<TipoProduto>();
+	private List<TipoProduto> listaTipoProdutos = new ArrayList<TipoProduto>();
 	
 	
 	public String cadastrar(){
@@ -38,8 +38,8 @@ public class TipoProdutoMB implements Serializable{
 	}
 	
 	public List<TipoProduto> listar(){
-		listatipoProdutos = tipoProdutoService.listar();
-		return listatipoProdutos;	
+		listaTipoProdutos = tipoProdutoService.listar();
+		return listaTipoProdutos;	
 	}
 	
 	public String novo(){
@@ -74,11 +74,11 @@ public class TipoProdutoMB implements Serializable{
 		this.tipoProdutoSelecionado = tipoProdutoSelecionado;
 	}
 
-	public List<TipoProduto> getListatipoProdutos() {
-		return listatipoProdutos;
+	public List<TipoProduto> getListaTipoProdutos() {
+		return listaTipoProdutos;
 	}
 
-	public void setListatipoProdutos(List<TipoProduto> listatipoProdutos) {
-		this.listatipoProdutos = listatipoProdutos;
-	}	
+	public void setListaTipoProdutos(List<TipoProduto> listaTipoProdutos) {
+		this.listaTipoProdutos = listaTipoProdutos;
+	}
 }

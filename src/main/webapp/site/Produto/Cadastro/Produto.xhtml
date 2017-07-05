@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <ui:define name="corpo"> 
+		
+	           
+    <title>Cadastrar Produto</title>  
+      <h:form>
+
+<h2>Produto</h2>
+     <p:tabView>
+        <p:tab title="Cadastrar Produto">
+        <p:separator/>
+             <h:panelGrid columns="2" >
+	                
+	                <p:outputLabel value="Tipo do Produto" />
+    				<p:selectOneRadio value="#{produtoMB.produto.tipoProduto}" valueChangeListener="#{produtoMB.escolherTipoProduto}" 
+    									layout="responsive"  >
+        				<f:selectItems value="#{tipoProdutoMB.listar()}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+        				<f:ajax event="change" render="valor"/>
+    				</p:selectOneRadio>
+					
+					<h:panelGroup id="valor">
+			    			
+			    			<h:panelGrid columns="4" >
+			    			
+				    			<p:outputLabel value="Nome:"/>
+		                		<p:inputText value="#{produtoMB.produto.nome}"/>
+				    			
+				    			<p:outputLabel id="autor" value="Autor:" 
+				    							rendered="#{produtoMB.produto.tipoProduto.nome eq 'Livro'}"/>
+		                		<p:inputText value="#{produtoMB.produto.autor}" 
+		                						rendered="#{produtoMB.produto.tipoProduto.nome eq 'Livro'}"/>
+		                					 
+		                		<p:outputLabel value="Quantidade:" />
+		                		<p:inputText value="#{produtoMB.produto.quantidade}"/>			 
+				    			
+				    			<p:outputLabel value="Valor:" />
+		                		<p:inputText value="#{produtoMB.produto.valor}" placeholder="Ex: 25.99 ..." />
+			    			</h:panelGrid>
+	    			</h:panelGroup>	        
+	            </h:panelGrid>   
+	      
+        </p:tab>
+    </p:tabView>
+     
+       <p:panelGrid  style="border:0px">
+         <p:commandButton value="Salvar" action="#{produtoMB.cadastrar()}"/>
+       </p:panelGrid>	
+    </h:form>
+    </ui:define>
+
+</ui:composition>
+

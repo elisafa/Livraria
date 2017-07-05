@@ -36,6 +36,7 @@ public class TipoProduto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
