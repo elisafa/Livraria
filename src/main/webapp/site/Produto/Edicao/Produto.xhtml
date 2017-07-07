@@ -18,7 +18,7 @@
      <p:tabView>
         <p:tab title="Cadastrar Produto">
         <p:separator/>
-             <h:panelGrid columns="4" >
+             <h:panelGrid columns="2" >
 	                
 	                <p:outputLabel value="Tipo do Produto" />
     				<p:selectOneMenu value="#{produtoMB.produto.tipoProduto}" converter="tipoProdutoConversor" valueChangeListener="#{produtoMB.escolherTipoProduto}" 
@@ -26,10 +26,7 @@
         				<f:selectItems value="#{tipoProdutoMB.listar()}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
         				<f:ajax event="change" render="valor"/>
     				</p:selectOneMenu>
-    				
-    				<p:outputLabel value="Teste"/>
-    				<p:outputLabel value="Teste2"/>
-    				
+    		</h:panelGrid>		
 					
 					<h:panelGroup id="valor">
 			    			
@@ -50,7 +47,7 @@
 		                		<p:inputText value="#{produtoMB.produto.valor}" placeholder="Ex: 25.99 ..." />
 			    			</h:panelGrid>
 	    			</h:panelGroup>	        
-	            </h:panelGrid>   
+	              
 	      
         </p:tab>
     </p:tabView>
