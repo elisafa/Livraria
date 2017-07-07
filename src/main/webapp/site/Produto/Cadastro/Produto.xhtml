@@ -19,8 +19,8 @@
              <h:panelGrid columns="2" >
 	                
 	                <p:outputLabel value="Tipo do Produto" />
-    				<p:selectOneRadio value="#{produtoMB.produto.tipoProduto}" valueChangeListener="#{produtoMB.escolherTipoProduto}" 
-    									layout="responsive"  >
+    				<p:selectOneRadio value="#{produtoMB.produto.tipoProduto}" converter="tipoProdutoConversor" valueChangeListener="#{produtoMB.escolherTipoProduto}" 
+    									layout="responsive" columns="1" >
         				<f:selectItems value="#{tipoProdutoMB.listar()}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
         				<f:ajax event="change" render="valor"/>
     				</p:selectOneRadio>

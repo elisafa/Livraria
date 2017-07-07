@@ -61,16 +61,10 @@ public class ProdutoMB implements Serializable{
 	}
 	
 	public Produto escolherTipoProduto(ValueChangeEvent evento){
-		produto.getTipoProduto().setNome(evento.getNewValue().toString());
-		System.out.println("Tipo de Produto Selecionado: " + produto.getTipoProduto());
-		
+		TipoProduto tipoProduto = new TipoProduto();
+		tipoProduto = (TipoProduto) evento.getNewValue();
+		produto.setTipoProduto(tipoProduto);
 		return produto;
-	}
-	
-	public void listener(AjaxBehaviorEvent event) {
-	        System.out.println("listener");
-	        String result = "called by " + event.getComponent().getClass().getName();
-	        System.out.println(result);
 	}
 	
 	public Produto getProduto() {
