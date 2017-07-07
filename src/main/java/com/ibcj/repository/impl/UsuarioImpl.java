@@ -33,7 +33,8 @@ public class UsuarioImpl implements Serializable, IUsuario{
 	
 	@Override
 	public List<Usuario> listar() {
-		Query query = em.createQuery("from Usuario u join fetch u.grupos");
+		//Query query = em.createQuery("from Usuario u join fetch u.grupos");
+		Query query = em.createQuery("Select u from Usuario u");
 		List<Usuario> listaUsuarios = query.getResultList();
 		return listaUsuarios;
 	}

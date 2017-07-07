@@ -1,6 +1,7 @@
 package com.ibcj.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Usuario implements Serializable{
 	private Long id;
 	private String login;
 	private String senha;
-	private List<Grupo> grupos;
+	private List<Grupo> grupos = new ArrayList<Grupo>();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
